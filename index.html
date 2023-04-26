@@ -1,0 +1,54 @@
+<form>
+  <label for="referral">If you were referred by a doctor or medical practice, please select who referred you. If you weren't referred, please select "I was not referred."</label>
+  <select id="referral" name="referral" onchange="updateButton()">
+    <option value="" selected disabled>Select an option</option>
+    <option value="not_referred">I was not referred</option>
+    <option value="dr_red">Dr. Red</option>
+    <option value="dr_orange">Dr. Orange</option>
+    <option value="dr_yellow">Dr. Yellow</option>
+    <option value="dr_green">Dr. Green</option>
+    <option value="dr_blue">Dr. Blue</option>
+    <option value="other">Other Doctor or practice</option>
+  </select>
+  <br>
+  <button type="submit" id="continueButton" onclick="redirectToSignUp()" disabled>Continue to sign up</button>
+</form>
+
+<script>
+  function updateButton() {
+    const referralSelect = document.getElementById("referral");
+    const referralValue = referralSelect.value;
+    
+    const continueButton = document.getElementById("continueButton");
+    continueButton.disabled = (referralValue === "");
+  }
+
+  function redirectToSignUp() {
+    const referralSelect = document.getElementById("referral");
+    const referralValue = referralSelect.value;
+    
+    let referralLink = "https://example.com/";
+    
+    switch (referralValue) {
+      case "dr_red":
+        referralLink += "red";
+        break;
+      case "dr_orange":
+        referralLink += "orange";
+        break;
+      case "dr_yellow":
+        referralLink += "yellow";
+        break;
+      case "dr_green":
+        referralLink += "green";
+        break;
+      case "dr_blue":
+        referralLink += "blue";
+        break;
+      default:
+        break;
+    }
+    
+    window.location.href = referralLink;
+  }
+</script>
